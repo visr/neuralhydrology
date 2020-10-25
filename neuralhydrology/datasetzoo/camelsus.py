@@ -229,7 +229,7 @@ def load_camels_us_discharge(data_dir: Path, basin: str, area: int) -> pd.Series
     df["date"] = pd.to_datetime(df.Year.map(str) + "/" + df.Mnth.map(str) + "/" + df.Day.map(str), format="%Y/%m/%d")
     df = df.set_index("date")
 
-    # normalize discharge from cubic feed per second to mm per day
+    # normalize discharge from cubic feet per second to mm per day
     df.QObs = 28316846.592 * df.QObs * 86400 / (area * 10**6)
 
     return df.QObs
